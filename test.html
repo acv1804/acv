@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<title>Selecție cu subcategorii și Chestionar Online</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  select, button {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #e0e0e0;
+  }
+  div {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+  }
+  #afisareFinala {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .intrebari-container {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+  .intrebare {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .intrebare p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .raspunsuri {
+    list-style: none;
+    padding: 0;
+  }
+  .raspunsuri li {
+    margin-bottom: 8px;
+  }
+  .raspunsuri input[type="radio"] {
+    margin-right: 8px;
+  }
+  .nav-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start; /* Aliniere la stânga */
+  }
+</style>
+<script>
+let intrebariGenerale = [];
+let intrebareCurentaIndex = 0;
+let raspunsuriUtilizator = {};
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwfvioLCzbFTxKbwxBkQzmy1r1YdJOTHVNdf1EJFe4ni_KIK_NPx7FzxW7UrKnyZAE/exec'; // !!! Înlocuiește cu URL-ul aplicației tale web Apps Script !!!
+
+function afiseazaSubcategorii() {
+    const selectPrincipal = document.getElementById('optiuniPrincipal');
+    const subcategorieSelect = document.getElementById('subcategorieSelect');
+    const subcategorieDropdownContainer = document.getElementById('subcategorieDropdownContainer');
+    const optiuneSelectata = selectPrincipal.value;
+
+    subcategorieDropdownContainer.style.display = 'none';
+    subcategorieSelect.innerHTML = '<option value="default">Selectează o subcategorie</option>';
+    document.getElementById('afisareFinala').textContent = '';
+    document.getElementById('intrebariContainer').innerHTML = '';
+    document.getElementById('navButtons').style.display = 'none';
+    document.getElementById('submitBtn').style.display = 'none'; // Ascunde butonul de trimitere
+
+    intrebariGenerale = [];
+    intrebareCurentaIndex = 0;
+    raspunsuriUtilizator = {};
+
+    if (optiuneSelectata !== 'default') {
+        const subcategorii = {};
+        for (let i = 1; i <= 16; i++) {
+            const subcategory = [`Sub ${i}.1`, `Sub ${i}.2`, `Sub ${i}.3`, `Sub ${i}.4`, `Sub ${i}.5`];
+            subcategorii[`team${i}`] = subcategory;
+        }
+
+        subcategorii[optiuneSelectata].forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub;
+            option.textContent = sub;
+            subcategorieSelect.appendChild(option);
+        });
+        subcategorieDropdownContainer.style.display = 'block';
+    }
+}
+
+function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
+    intrebariGenerale = [];
+    intrebareCurentaIndex = 0;
+    raspunsuriUtilizator = {};
+
+    if (optiunePrincipala === 'default' || subcategorie === 'default') {
+        return;
+    }
+
+    const intrebariExemplu = [
+        {
+            intrebare: `Întrebarea 1: Care este principalul obiectiv pentru ${optiunePrincipala} în ${subcategorie}?`,
+            raspunsuri: [
+                "Creșterea eficienței operaționale", "Dezvoltarea de noi produse", "Expansiunea pe piață",
+                "Optimizarea costurilor", "Îmbunătățirea satisfacției clienților", "Formarea echipei",
+                "Inovația tehnologică", "Reducerea riscurilor", "Conformitatea legală",
+                "Sustenabilitatea mediului", "Parteneriate strategice", "Analiza datelor",
+                "Marketing digital"
+            ]
+        },
+        {
+            intrebare: `Întrebarea 2: Ce provocări majore întâmpină ${optiunePrincipala} în contextul ${subcategorie}?`,
+            raspunsuri: [
+                "Concurența acerbă", "Reglementări în schimbare", "Lipsa resurselor",
+                "Tehnologie învechită", "Schimbări de piață", "Fluctuații economice",
+                "Atracția talentelor", "Integrarea sistemelor", "Securitatea cibernetică",
+                "Comunicarea internă", "Logistica", "Managementul timpului",
+                "Adaptarea la noi tendințe"
+            ]
+        },
+        {
+            intrebare: `Întrebarea 3: Cum contribuie ${subcategorie} la succesul general al ${optiunePrincipala}?`,
+            raspunsuri: [
+                "Prin inovație constantă", "Prin soluții personalizate", "Prin reducerea erorilor",
+                "Prin optimizarea proceselor", "Prin experiența utilizatorului", "Prin suport tehnic",
+                "Prin strategii de vânzări", "Prin analize predictive", "Prin gestionarea proiectelor",
+                "Prin automatizare", "Prin cercetare și dezvoltare", "Prin design atractiv",
+                "Prin feedback-ul clienților"
+            ]
+        },
+        {
+            intrebare: `Întrebarea 4: Ce instrumente sau metode sunt esențiale pentru ${optiunePrincipala} în ${subcategorie}?`,
+            raspunsuri: [
+                "Software CRM", "Platforme de analiză", "Metodologii Agile",
+                "Instrumente de colaborare", "Sisteme ERP", "Inteligență Artificială",
+                "Big Data", "Cloud Computing", "Automatizarea Marketingului",
+                "Blockchain", "Realitate Augmentată", "Drone",
+                "Internetul Lucrurilor (IoT)"
+            ]
+        },
+        {
+            intrebare: `Întrebarea 5: Ce oportunități de creștere există pentru ${optiunePrincipala} prin ${subcategorie}?`,
+            raspunsuri: [
+                "Extinderea portofoliului de servicii", "Pătrunderea pe noi segmente de piață", "Parteneriate strategice",
+                "Achiziții", "Licențiere", "Franchizare",
+                "Dezvoltare internațională", "Creșterea notorietății brandului", "Diversificarea veniturilor",
+                "Îmbunătățirea eficienței", "Investiții în cercetare", "Atragerea de noi talente",
+                "Implementarea de noi tehnologii"
+            ]
+        }
+    ];
+
+    intrebariGenerale = intrebariExemplu;
+    afiseazaIntrebareCurenta();
+    document.getElementById('navButtons').style.display = 'flex';
+}
+
+function afiseazaIntrebareCurenta() {
+    const intrebariContainer = document.getElementById('intrebariContainer');
+    intrebariContainer.innerHTML = '';
+
+    if (intrebariGenerale.length === 0) {
+        return;
+    }
+
+    const intrebare = intrebariGenerale[intrebareCurentaIndex];
+
+    const intrebareDiv = document.createElement('div');
+    intrebareDiv.classList.add('intrebare');
+
+    const pIntrebare = document.createElement('p');
+    pIntrebare.textContent = intrebare.intrebare;
+    intrebareDiv.appendChild(pIntrebare);
+
+    const ulRaspunsuri = document.createElement('ul');
+    ulRaspunsuri.classList.add('raspunsuri');
+    const questionName = `question${intrebareCurentaIndex}`;
+
+    intrebare.raspunsuri.forEach((rasp, index) => {
+        const liRaspuns = document.createElement('li');
+        const inputRadio = document.createElement('input');
+        inputRadio.type = 'radio';
+        inputRadio.name = questionName;
+        inputRadio.value = rasp;
+        inputRadio.id = `${questionName}_${index}`;
+
+        if (raspunsuriUtilizator[intrebareCurentaIndex] === rasp) {
+            inputRadio.checked = true;
+        }
+
+        inputRadio.onchange = () => {
+            raspunsuriUtilizator[intrebareCurentaIndex] = inputRadio.value;
+        };
+
+        const labelRaspuns = document.createElement('label');
+        labelRaspuns.setAttribute('for', `${questionName}_${index}`);
+        labelRaspuns.textContent = rasp;
+
+        liRaspuns.appendChild(inputRadio);
+        liRaspuns.appendChild(labelRaspuns);
+        ulRaspunsuri.appendChild(liRaspuns);
+    });
+    intrebareDiv.appendChild(ulRaspunsuri);
+    intrebariContainer.appendChild(intrebareDiv);
+
+    document.getElementById('prevBtn').disabled = intrebareCurentaIndex === 0;
+    document.getElementById('nextBtn').disabled = intrebareCurentaIndex === intrebariGenerale.length - 1;
+
+    // Afișează butonul de trimitere doar la ultima întrebare
+    if (intrebareCurentaIndex === intrebariGenerale.length - 1) {
+        document.getElementById('submitBtn').style.display = 'block';
+    } else {
+        document.getElementById('submitBtn').style.display = 'none';
+    }
+}
+
+function nextIntrebare() {
+    if (intrebareCurentaIndex < intrebariGenerale.length - 1) {
+        intrebareCurentaIndex++;
+        afiseazaIntrebareCurenta();
+    }
+}
+
+function prevIntrebare() {
+    if (intrebareCurentaIndex > 0) {
+        intrebareCurentaIndex--;
+        afiseazaIntrebareCurenta();
+    }
+}
+
+async function trimiteRaspunsuri() {
+    const selectPrincipal = document.getElementById('optiuniPrincipal');
+    const subcategorieSelect = document.getElementById('subcategorieSelect');
+
+    const valoareOptiunePrincipala = selectPrincipal.value; // ex: team1
+    const subcategorieSelectata = subcategorieSelect.value; // ex: Sub 1.1
+
+    // Colectează toate răspunsurile
+    const formData = new FormData();
+    formData.append('team', valoareOptiunePrincipala);
+    formData.append('subcategorie', subcategorieSelectata);
+
+    let allQuestionsAnswered = true;
+    for (let i = 0; i < intrebariGenerale.length; i++) {
+        if (raspunsuriUtilizator[i]) {
+            formData.append(`raspuns${i}`, raspunsuriUtilizator[i]);
+        } else {
+            allQuestionsAnswered = false;
+            // Oprește-te și informează utilizatorul că trebuie să răspundă la toate întrebările
+            alert(`Te rog răspunde la Întrebarea ${i + 1} înainte de a trimite!`);
+            // Opțional: navighează la întrebarea la care nu s-a răspuns
+            intrebareCurentaIndex = i;
+            afiseazaIntrebareCurenta();
+            return; 
+        }
+    }
+
+    if (!allQuestionsAnswered) {
+        return; // Nu trimite dacă nu sunt toate întrebările răspuns
+    }
+
+    // Aici se face cererea POST către Google Apps Script
+    try {
+        const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: 'POST',
+            body: formData, // FormData este ideală pentru a trimite date către Apps Script doPost
+            // headers: { 'Content-Type': 'application/json' }, // Nu e necesar pentru FormData
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'SUCCESS') {
+            alert('Răspunsurile tale au fost trimise cu succes!');
+            // Poți reseta formularul aici sau redirecționa utilizatorul
+            resetForm();
+        } else {
+            alert(`A apărut o eroare: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Eroare la trimiterea datelor:', error);
+        alert('Nu s-au putut trimite răspunsurile. Verifică consola pentru detalii.');
+    }
+}
+
+function resetForm() {
+    document.getElementById('optiuniPrincipal').value = 'default';
+    afiseazaSubcategorii(); // Va reseta și subcategoriile și întrebările
+}
+
+
+function afiseazaSelectiaFinala() {
+    const selectPrincipal = document.getElementById('optiuniPrincipal');
+    const subcategorieSelect = document.getElementById('subcategorieSelect');
+    const afisareFinala = document.getElementById('afisareFinala');
+
+    const optiunePrincipalaSelectata = selectPrincipal.options[selectPrincipal.selectedIndex].textContent;
+    const subcategorieSelectata = subcategorieSelect.value;
+    const valoareOptiunePrincipala = selectPrincipal.value;
+
+    if (optiunePrincipalaSelectata !== 'Selectează' && subcategorieSelectata !== 'default') {
+        afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata} și ${subcategorieSelectata}`;
+        genereazaSiAfiseazaPrimaIntrebare(valoareOptiunePrincipala, subcategorieSelectata);
+    } else if (optiunePrincipalaSelectata !== 'Selectează') {
+         afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata}`;
+         document.getElementById('intrebariContainer').innerHTML = '';
+         document.getElementById('navButtons').style.display = 'none';
+         document.getElementById('submitBtn').style.display = 'none';
+         intrebariGenerale = [];
+         intrebareCurentaIndex = 0;
+         raspunsuriUtilizator = {};
+    } else {
+        afisareFinala.textContent = '';
+        document.getElementById('intrebariContainer').innerHTML = '';
+        document.getElementById('navButtons').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'none';
+        intrebariGenerale = [];
+        intrebareCurentaIndex = 0;
+        raspunsuriUtilizator = {};
+    }
+}
+</script>
+</head>
+<body>
+<form>
+    <label for="optiuniPrincipal">Alege o opțiune:</label>
+    <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
+        <option value="default">Selectează</option>
+        <option value="team1">Team 1</option>
+        <option value="team2">Team 2</option>
+        <option value="team3">Team 3</option>
+        <option value="team4">Team 4</option>
+        <option value="team5">Team 5</option>
+        <option value="team6">Team 6</option>
+        <option value="team7">Team 7</option>
+        <option value="team8">Team 8</option>
+        <option value="team9">Team 9</option>
+        <option value="team10">Team 10</option>
+        <option value="team11">Team 11</option>
+        <option value="team12">Team 12</option>
+        <option value="team13">Team 13</option>
+        <option value="team14">Team 14</option>
+        <option value="team15">Team 15</option>
+        <option value="team16">Team 16</option>
+    </select>
+</form>
+
+<form id="subcategorieDropdownContainer" style="display: none;">
+    <label for="subcategorieSelect">Selectează o subcategorie:</label>
+    <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
+        <option value="default">Selectează o subcategorie</option>
+    </select>
+</form>
+
+<div id="afisareFinala"></div>
+
+<div id="intrebariContainer" class="intrebari-container">
+    </div>
+
+<div id="navButtons" class="nav-buttons" style="display: none;">
+    <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
+    <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
+    <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
+</div>
+
+</body>
+</html>
