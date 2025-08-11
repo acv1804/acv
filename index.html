@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8" />
-<title>Selecție cu subcategorii personalizate și Chestionar Online</title>
+<title>TI LEGACY: VOTE FOR THE BEST</title>
 <style>
   /* Stiluri generale pentru body */
   body {
@@ -246,7 +246,7 @@ function afiseazaSubcategorii() {
     const optiuneSelectata = selectPrincipal.value;
 
     subcategorieDropdownContainer.style.display = 'none';
-    subcategorieSelect.innerHTML = '<option value="default">Selectează o subcategorie</option>';
+    subcategorieSelect.innerHTML = '<option value="default">Select nickname</option>';
     document.getElementById('afisareFinala').textContent = '';
     document.getElementById('intrebariContainer').innerHTML = '';
     document.getElementById('navButtons').style.display = 'none';
@@ -285,7 +285,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
 
     const intrebariExemplu = [
         {
-            intrebare: `BEST CARRY WINNERS OF THE INTERNATIONAL`, 
+            intrebare: `BEST CARRY WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
                 "<strong>Artstyle</strong> / NAVI / <strong>TI 1</strong>",
                 "<strong>Zhou</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
@@ -301,7 +301,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
 ]
         },
         {
-            intrebare: `BEST MID LANE WINNERS OF THE INTERNATIONAL`, 
+            intrebare: `BEST MID LANE WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
                 "<strong>Dendi</strong> / NAVI / <strong>TI 1</strong>", 
                 "<strong>Ferrari_430</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
@@ -319,7 +319,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `BEST OFFLANE WINNERS OF THE INTERNATIONAL`, 
+            intrebare: `BEST OFFLANE WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
                 "<strong>XBOCT</strong> / NAVI / <strong>TI 1</strong>", 
                 "<strong>YYF</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
@@ -334,7 +334,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `BEST SOFT SUPPORT WINNERS OF THE INTERNATIONAL`, 
+            intrebare: `BEST SOFT SUPPORT WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
                  "<strong>Puppey</strong> / NAVI / <strong>TI 1</strong>", 
                  "<strong>ChuaN</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
@@ -350,7 +350,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `BEST HARD SUPPORT WINNERS OF THE INTERNATIONAL`, 
+            intrebare: `BEST HARD SUPPORT WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
                "<strong>LighTofHeaveN</strong> / NAVI / <strong>TI 1</strong>", 
                "<strong>Faith</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
@@ -465,7 +465,7 @@ async function trimiteRaspunsuri() {
             formData.append(`raspuns${i}`, raspunsuriUtilizator[i]); // Păstrăm `raspuns0`, `raspuns1` etc.
         } else {
             allQuestionsAnswered = false;
-            alert(`Te rog răspunde la Întrebarea ${i + 1} înainte de a trimite!`);
+            alert(`Plese select an answer before sending!`);
             intrebareCurentaIndex = i;
             afiseazaIntrebareCurenta();
             return; 
@@ -484,21 +484,21 @@ async function trimiteRaspunsuri() {
 
         if (!response.ok) {
             const errorText = await response.text(); 
-            console.error('Eroare la răspunsul serverului:', response.status, response.statusText, errorText);
-            throw new Error(`Răspuns HTTP eșuat: ${response.status} ${response.statusText}. Detalii: ${errorText}`);
+            console.error('Server response error:', response.status, response.statusText, errorText);
+            throw new Error(`HTTP response failed: ${response.status} ${response.statusText}. Detalii: ${errorText}`);
         }
 
         const data = await response.json();
 
         if (data.status === 'SUCCESS') {
-            alert('Răspunsurile tale au fost trimise cu succes!');
+            alert('Your answers have been successfully submitted!');
             resetForm();
         } else {
-            alert(`A apărut o eroare: ${data.message}`);
+            alert(`Error: ${data.message}`);
         }
     } catch (error) {
-        console.error('Eroare la trimiterea datelor:', error);
-        alert('Nu s-au putut trimite răspunsurile. Verifică consola pentru detalii.');
+        console.error('Error sending data:', error);
+        alert('Unable to send responses. Check the console for details.');
     }
 }
 
@@ -540,10 +540,10 @@ function afiseazaSelectiaFinala() {
 </script>
 </head>
 <body>
-<div class="main-container"> <h1>Chestionar Online</h1> <form>
-        <label for="optiuniPrincipal">Alege o opțiune:</label>
+<div class="main-container"> <h1> TI LEGACY: VOTE FOR THE BEST  </h1> <form>
+        <label for="optiuniPrincipal">Choose team:</label>
         <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
-            <option value="default">Selectează</option>
+            <option value="default">Select team</option>
             <option value="team1">Aurora Gaming</option>
             <option value="team2">BB Team</option>
             <option value="team3">BOOM Esports</option>
@@ -564,9 +564,9 @@ function afiseazaSelectiaFinala() {
     </form>
 
     <form id="subcategorieDropdownContainer" style="display: none;">
-        <label for="subcategorieSelect">Selectează o subcategorie:</label>
+        <label for="subcategorieSelect">Choose Nickname:</label>
         <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
-            <option value="default">Selectează o subcategorie</option>
+            <option value="default">Select Nickname</option>
         </select>
     </form>
 
@@ -576,9 +576,9 @@ function afiseazaSelectiaFinala() {
     </div>
 
     <div id="navButtons" class="nav-buttons" style="display: none;">
-        <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
-        <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
-        <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
+        <button id="prevBtn" onclick="prevIntrebare()">Back</button>
+        <button id="nextBtn" onclick="nextIntrebare()">Next</button>
+        <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Send</button>
     </div>
 </div> </body>
 </html>
