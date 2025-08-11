@@ -4,72 +4,212 @@
 <meta charset="UTF-8" />
 <title>Selecție cu subcategorii și Chestionar Online</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-  }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  select, button {
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #e0e0e0;
-  }
-  div {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #e9e9e9;
-    border-radius: 4px;
-  }
-  #afisareFinala {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  .intrebari-container {
-    margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-  }
-  .intrebare {
-    margin-bottom: 20px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .intrebare p {
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 1.1em;
-  }
-  .raspunsuri {
-    list-style: none;
-    padding: 0;
-  }
-  .raspunsuri li {
-    margin-bottom: 8px;
-  }
-  .raspunsuri input[type="radio"] {
-    margin-right: 8px;
-  }
-  .nav-buttons {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start; /* Aliniere la stânga */
-  }
+    /* Stiluri generale pentru body */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0; /* Elimină marginile implicite ale body-ului */
+        padding: 20px; /* Adaugă padding uniform în jurul conținutului */
+        background-color: #f4f4f4; /* Fundal ușor gri */
+        display: flex; /* Folosim flexbox pentru a centra conținutul */
+        flex-direction: column; /* Elemente aranjate pe coloană */
+        align-items: center; /* Centrează orizontal elementele copil */
+        min-height: 100vh; /* Asigură că body-ul ocupă toată înălțimea viewport-ului */
+        box-sizing: border-box; /* Include padding-ul în lățime și înălțime */
+    }
+
+    /* Container principal pentru a limita lățimea conținutului și a-l centra */
+    .main-container {
+        width: 100%; /* Ocupă 100% din lățimea disponibilă a părinteleui (body) */
+        max-width: 800px; /* Limitează lățimea maximă la 800px, ideal pentru lizibilitate */
+        padding: 30px; /* Padding intern generos */
+        background-color: #ffffff; /* Fundal alb pentru container */
+        border-radius: 8px; /* Colțuri rotunjite pentru un aspect modern */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Umbră subtilă pentru a scoate în evidență containerul */
+        margin-top: 20px; /* Spațiu deasupra containerului */
+        margin-bottom: 20px; /* Spațiu sub container */
+    }
+
+    /* Stil pentru titlul principal (nou adăugat în HTML) */
+    h1 {
+        text-align: center; /* Centrează textul titlului */
+        color: #333;
+        margin-bottom: 30px; /* Spațiu sub titlu */
+        font-size: 2em; /* Mărime mai mare pentru titlu */
+    }
+
+    /* Stiluri pentru etichetele formularului */
+    label {
+        display: block;
+        margin-bottom: 8px; /* Spațiu sub etichetă */
+        font-weight: bold;
+        color: #555; /* O nuanță mai închisă pentru etichete */
+        font-size: 1.1em;
+    }
+
+    /* Stiluri pentru elementele select și button */
+    select, button {
+        padding: 12px 15px; /* Padding mai generos */
+        margin-bottom: 20px; /* Spațiu sub element */
+        border: 1px solid #ccc;
+        border-radius: 6px; /* Colțuri ușor mai rotunjite */
+        font-size: 1em; /* Mărime consistentă a fontului */
+        cursor: pointer;
+        width: 100%; /* Ocupă toată lățimea containerului părinte */
+        box-sizing: border-box; /* Include padding-ul și bordura în lățime */
+        background-color: #fff; /* Fundal alb */
+        color: #333;
+        transition: all 0.3s ease; /* Animație subtilă la hover/focus */
+    }
+
+    /* Stiluri pentru focus (când un element este selectat/activ) */
+    select:focus, button:focus {
+        outline: none; /* Elimină conturul implicit al browserului */
+        border-color: #603393; /* Bordură accentuată la focus */
+        box-shadow: 0 0 0 3px rgba(96, 51, 147, 0.2); /* Umbră de focus subtilă */
+    }
+
+    /* Stiluri pentru butoane */
+    button {
+        background-color: #4CAF50; /* Culoare verde primară */
+        color: white;
+        font-weight: bold;
+        border: none;
+    }
+
+    button:hover {
+        background-color: #45a049; /* Nuanță mai închisă la hover */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Umbră la hover */
+    }
+
+    /* Stiluri pentru zona de afișare finală */
+    #afisareFinala {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 25px; /* Spațiu sub afișare */
+        padding: 15px;
+        border: 1px solid #ddd;
+        background-color: #e9e9e9;
+        border-radius: 6px;
+        text-align: center; /* Centrează textul */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Stiluri pentru containerul de întrebări */
+    .intrebari-container {
+        margin-top: 30px; /* Spațiu deasupra containerului de întrebări */
+        border-top: 2px solid #ccc; /* Linie de separare mai vizibilă */
+        padding-top: 30px;
+        width: 100%;
+    }
+
+    /* Stiluri pentru fiecare întrebare individuală */
+    .intrebare {
+        margin-bottom: 25px; /* Spațiu sub fiecare întrebare */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px; /* Colțuri rotunjite */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Umbră mai pronunțată */
+        border: 1px solid #eee; /* Bordură foarte subtilă */
+    }
+
+    .intrebare p {
+        font-weight: bold;
+        margin-bottom: 15px; /* Spațiu sub textul întrebării */
+        font-size: 1.2em; /* Textul întrebării mai mare */
+        color: #333;
+    }
+
+    /* Stiluri pentru lista de răspunsuri */
+    .raspunsuri {
+        list-style: none; /* Elimină bullet points */
+        padding: 0;
+        margin: 0;
+    }
+
+    .raspunsuri li {
+        margin-bottom: 12px; /* Spațiu între opțiunile de răspuns */
+        display: flex; /* Pentru alinierea input-ului radio cu label-ul */
+        align-items: center; /* Centrează vertical elementele */
+    }
+
+    /* Stiluri pentru radio button-uri (personalizate pentru un aspect mai modern) */
+    .raspunsuri input[type="radio"] {
+        -webkit-appearance: none; /* Ascunde stilurile implicite ale browserului */
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px; /* Dimensiune fixă */
+        height: 20px;
+        border: 2px solid #603393; /* Bordură violet */
+        border-radius: 50%; /* Face-l rotund */
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.2s ease; /* Animație la hover/checked */
+        flex-shrink: 0; /* Prevents shrinking in flex container */
+        margin-right: 10px; /* Spațiu între radio și text */
+    }
+
+    .raspunsuri input[type="radio"]:checked {
+        background-color: #603393; /* Fundal violet când e selectat */
+        border-color: #603393;
+        box-shadow: inset 0 0 0 5px #F4E2D6; /* "Buliță" alb crem în centru */
+    }
+
+    .raspunsuri label {
+        margin-bottom: 0; /* Elimină margin-bottom de la label-ul general */
+        font-weight: normal; /* Asigură că textul nu este bold */
+        color: #0B0B0B; /* Text negru profund */
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    /* Stiluri pentru butoanele de navigare (Anteriorul, Următorul, Trimite) */
+    .nav-buttons {
+        margin-top: 25px;
+        display: flex;
+        gap: 15px; /* Spațiu mai mare între butoane */
+        justify-content: flex-start; /* Aliniere la stânga */
+        width: 100%;
+    }
+
+    .nav-buttons button {
+        width: auto; /* Lățime automată pentru butoanele individuale */
+        padding: 12px 25px; /* Padding generos */
+        font-size: 1.1em;
+        border-radius: 6px;
+    }
+
+    #prevBtn, #nextBtn {
+        background-color: #CC83B8; /* Violet deschis pentru navigare */
+        color: #3B0A5C; /* Text violet închis */
+    }
+
+    #prevBtn:hover, #nextBtn:hover {
+        background-color: #603393; /* Violet mediu la hover */
+        color: white;
+    }
+
+    #submitBtn {
+        background-color: #BA8C47; /* Galben mediu pentru butonul de trimitere */
+        color: #3B0A5C; /* Text violet închis */
+        margin-left: auto; /* Împinge butonul la dreapta */
+    }
+
+    #submitBtn:hover {
+        background-color: #DBBF76; /* Galben deschis la hover */
+    }
+
+    #prevBtn:disabled, #nextBtn:disabled {
+        background-color: #cccccc; /* Gri pentru butoanele dezactivate */
+        color: #666666;
+        cursor: not-allowed;
+    }
+
+    /* Asigură că formularele ocupă toată lățimea containerului lor */
+    form {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
 </style>
 <script>
 let intrebariGenerale = [];
@@ -344,47 +484,48 @@ function afiseazaSelectiaFinala() {
 </script>
 </head>
 <body>
-<form>
-    <label for="optiuniPrincipal">Alege o opțiune:</label>
-    <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
-        <option value="default">Selectează</option>
-        <option value="team1">Team 1</option>
-        <option value="team2">Team 2</option>
-        <option value="team3">Team 3</option>
-        <option value="team4">Team 4</option>
-        <option value="team5">Team 5</option>
-        <option value="team6">Team 6</option>
-        <option value="team7">Team 7</option>
-        <option value="team8">Team 8</option>
-        <option value="team9">Team 9</option>
-        <option value="team10">Team 10</option>
-        <option value="team11">Team 11</option>
-        <option value="team12">Team 12</option>
-        <option value="team13">Team 13</option>
-        <option value="team14">Team 14</option>
-        <option value="team15">Team 15</option>
-        <option value="team16">Team 16</option>
-    </select>
-</form>
+    <div class="main-container">
+        <h1>Chestionar Online</h1> <form>
+            <label for="optiuniPrincipal">Alege o opțiune:</label>
+            <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
+                <option value="default">Selectează</option>
+                <option value="team1">Team 1</option>
+                <option value="team2">Team 2</option>
+                <option value="team3">Team 3</option>
+                <option value="team4">Team 4</option>
+                <option value="team5">Team 5</option>
+                <option value="team6">Team 6</option>
+                <option value="team7">Team 7</option>
+                <option value="team8">Team 8</option>
+                <option value="team9">Team 9</option>
+                <option value="team10">Team 10</option>
+                <option value="team11">Team 11</option>
+                <option value="team12">Team 12</option>
+                <option value="team13">Team 13</option>
+                <option value="team14">Team 14</option>
+                <option value="team15">Team 15</option>
+                <option value="team16">Team 16</option>
+            </select>
+        </form>
 
-<form id="subcategorieDropdownContainer" style="display: none;">
-    <label for="subcategorieSelect">Selectează o subcategorie:</label>
-    <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
-        <option value="default">Selectează o subcategorie</option>
-    </select>
-</form>
+        <form id="subcategorieDropdownContainer" style="display: none;">
+            <label for="subcategorieSelect">Selectează o subcategorie:</label>
+            <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
+                <option value="default">Selectează o subcategorie</option>
+            </select>
+        </form>
 
-<div id="afisareFinala"></div>
+        <div id="afisareFinala"></div>
 
-<div id="intrebariContainer" class="intrebari-container">
+        <div id="intrebariContainer" class="intrebari-container">
+        </div>
+
+        <div id="navButtons" class="nav-buttons" style="display: none;">
+            <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
+            <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
+            <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
+        </div>
     </div>
-
-<div id="navButtons" class="nav-buttons" style="display: none;">
-    <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
-    <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
-    <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
-</div>
-
 </body>
 </html>
 
