@@ -217,8 +217,7 @@ let intrebareCurentaIndex = 0;
 let raspunsuriUtilizator = {};
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-_Lz2PDvW99sG4gSQ2DGt3GH2ggdpbNGNV78N-mkLez6CEibp9_tnBPRjR6aqWV_V/exec'; // !!! Înlocuiește cu URL-ul aplicației tale web Apps Script !!!
 
-// NOU: Obiect care stochează subcategoriile pentru fiecare echipă
-// ACUM AI CONTROL TOTAL ASUPRA NUMELOR SUBCATEGORIILOR PENTRU FIECARE ECHIPĂ!
+// Obiect care stochează subcategoriile (nickname-urile) pentru fiecare echipă
 const subcategoriiPerEchipa = {
     'team1': ['Nightfall', 'kiyotaka', 'TORONTOTOKYO', 'Mira', 'panto'], // Aurora Gaming
     'team2': ['Pure', 'gpk~', 'MieRo', 'Save-', 'Kataomi`'], // BB Team
@@ -298,7 +297,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
                 "<strong>Yatoro</strong> / TEAM SPIRIT / <strong>TI 10</strong> & <strong>TI 12</strong>", 
                 "<strong>skiter</strong> / TUNDRA ESPORTS / <strong>TI 11</strong>", 
                 "<strong>miCKe</strong> / TEAM LIQUID / <strong>TI 13</strong>"
-]
+            ]
         },
         {
             intrebare: `BEST MID LANE WINNER OF THE INTERNATIONAL`, 
@@ -310,7 +309,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
                 "<strong>SumaiL</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
                 "<strong>bLink</strong> / WINGS GAMING / <strong>TI 6</strong>", 
                 "<strong>Miracle-</strong> / TEAM LIQUID / <strong>TI 7</strong>", 
-                "<strong>Topson</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong>", 
+                "<strong>Topson</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong>", 
                 "<strong>TORONTOTOKYO</strong> / TEAM SPIRIT / <strong>TI 10</strong>", 
                 "<strong>skiter</strong> / Nine / <strong>TI 11</strong>", 
                 "<strong>Larl</strong> / TEAM SPIRIT / <strong>TI 12</strong>", 
@@ -328,7 +327,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
                 "<strong>UNiVeRsE</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
                 "<strong>Faith_bian</strong> / WINGS GAMING / <strong>TI 6</strong>", 
                 "<strong>MinD_ContRoL</strong> / TEAM LIQUID / <strong>TI 7</strong>", 
-                "<strong>Ceb</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
+                "<strong>Ceb</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
                 "<strong>Collapse</strong> / TEAM SPIRIT / <strong>TI 10</strong> & <strong>TI 12</strong>", 
                 "<strong>33</strong> / TUNDRA ESPORTS / <strong>TI 11</strong> & TEAM LIQUID / <strong>TI 13</strong>"
             ]
@@ -336,14 +335,14 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
         {
             intrebare: `BEST SOFT SUPPORT WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
-                 "<strong>Puppey</strong> / NAVI / <strong>TI 1</strong>", 
-                 "<strong>ChuaN</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
-                 "<strong>EGM</strong> / ALLIANCE / <strong>TI 3</strong>", 
-                 "<strong>Banana</strong> / NEWBEE / <strong>TI 4</strong>", 
-                 "<strong>Aui_2000</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
+                "<strong>Puppey</strong> / NAVI / <strong>TI 1</strong>", 
+                "<strong>ChuaN</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
+                "<strong>EGM</strong> / ALLIANCE / <strong>TI 3</strong>", 
+                "<strong>Banana</strong> / NEWBEE / <strong>TI 4</strong>", 
+                "<strong>Aui_2000</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
                 "<strong>y`</strong> / WINGS GAMING / <strong>TI 6</strong>", 
                 "<strong>GH</strong> / TEAM LIQUID / <strong>TI 7</strong>", 
-                "<strong>JerAx</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
+                "<strong>JerAx</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
                 "<strong>Mira</strong> / TEAM SPIRIT / <strong>TI 10</strong> & <strong>TI 12</strong>", 
                 "<strong>Saksa</strong> / TUNDRA ESPORTS / <strong>TI 11</strong>", 
                 "<strong>Boxi</strong> / TEAM LIQUID / <strong>TI 13</strong>"
@@ -352,14 +351,14 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
         {
             intrebare: `BEST HARD SUPPORT WINNER OF THE INTERNATIONAL`, 
             raspunsuri: [
-               "<strong>LighTofHeaveN</strong> / NAVI / <strong>TI 1</strong>", 
-               "<strong>Faith</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
-               "<strong>Akke</strong> / ALLIANCE / <strong>TI 3</strong>",
-               "<strong>SanSheng</strong> / NEWBEE / <strong>TI 4</strong>", 
-               "<strong>ppd</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
-               "<strong>iceice</strong> / WINGS GAMING / <strong>TI 6</strong>",
+                "<strong>LighTofHeaveN</strong> / NAVI / <strong>TI 1</strong>", 
+                "<strong>Faith</strong> / INVICTUS GAMING / <strong>TI 2</strong>", 
+                "<strong>Akke</strong> / ALLIANCE / <strong>TI 3</strong>",
+                "<strong>SanSheng</strong> / NEWBEE / <strong>TI 4</strong>", 
+                "<strong>ppd</strong> / EVIL GENIUSES / <strong>TI 5</strong>", 
+                "<strong>iceice</strong> / WINGS GAMING / <strong>TI 6</strong>",
                 "<strong>KuroKy</strong> / TEAM LIQUID / <strong>TI 7</strong>", 
-                "<strong>N0tail</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
+                "<strong>N0tail</strong> / OG / <strong>TI 8</strong> &  <strong>TI 9</strong> ", 
                 "<strong>Miposhka </strong> TEAM SPIRIT / <strong>TI 10</strong> & <strong>TI 12</strong>", 
                 "<strong>Sneyking </strong> TUNDRA ESPORTS / <strong>TI 11</strong>", 
                 "<strong>Insania </strong> TEAM LIQUID / <strong>TI 13</strong>"
@@ -370,7 +369,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
     intrebariGenerale = intrebariExemplu;
     afiseazaIntrebareCurenta();
     document.getElementById('navButtons').style.display = 'flex';
-     
+    
 }
 
 function afiseazaIntrebareCurenta() {
@@ -399,42 +398,72 @@ function afiseazaIntrebareCurenta() {
         const inputRadio = document.createElement('input');
         inputRadio.type = 'radio';
         inputRadio.name = questionName;
-        inputRadio.value = rasp.replace(/<\/?strong>/g, '');
-        if (raspunsuriUtilizator[intrebareCurentaIndex] === rasp)
+        // Păstrăm valoarea radio butonului ca text simplu, fără tag-uri HTML.
+        // Folosim o expresie regulată pentru a elimina <strong> tag-urile.
+        inputRadio.value = rasp.replace(/<\/?strong>/g, ''); 
         inputRadio.id = `${questionName}_${index}`;
 
-        if (raspunsuriUtilizator[intrebareCurentaIndex] === rasp) {
+        // Verificăm dacă răspunsul salvat (text simplu) se potrivește cu valoarea curățată.
+        if (raspunsuriUtilizator[intrebareCurentaIndex] === inputRadio.value) {
             inputRadio.checked = true;
         }
 
         inputRadio.onchange = () => {
+            // Salvăm în raspunsuriUtilizator valoarea textului simplu.
             raspunsuriUtilizator[intrebareCurentaIndex] = inputRadio.value;
-            
+            checkIfAnswerSelected(); // Apelăm pentru a actualiza starea butonului Next/Send
         };
 
         const labelRaspuns = document.createElement('label');
         labelRaspuns.setAttribute('for', `${questionName}_${index}`);
-        labelRaspuns.textContent = rasp;
-        labelRaspuns.innerHTML = rasp;
+        // Folosim innerHTML pentru a afișa textul cu bold
+        labelRaspuns.innerHTML = rasp; 
 
         liRaspuns.appendChild(inputRadio);
-        liRaspuns.appendChild(labelRaspuns);
+        liRaspuns.appendChild(labelRaspuns); 
         ulRaspunsuri.appendChild(liRaspuns);
     });
     intrebareDiv.appendChild(ulRaspunsuri);
     intrebariContainer.appendChild(intrebareDiv);
 
     document.getElementById('prevBtn').disabled = intrebareCurentaIndex === 0;
-    document.getElementById('nextBtn').disabled = intrebareCurentaIndex === intrebariGenerale.length - 1;
+    document.getElementById('nextBtn').disabled = intrebariGenerale.length > 0; // Butonul Next este inițial dezactivat
+                                                                               // până la selecția unui răspuns
+    // Facem butoanele de navigare (Next/Back) disable/enable în funcție de răspunsul selectat
+    checkIfAnswerSelected(); // Apelăm inițial pentru a seta starea corectă a butonului Next
+}
 
-    if (intrebareCurentaIndex === intrebariGenerale.length - 1) {
-        document.getElementById('submitBtn').style.display = 'block';
-    } else {
-        document.getElementById('submitBtn').style.display = 'none';
+// FUNCȚIE NOUĂ: Verifică dacă a fost selectat un răspuns pentru întrebarea curentă
+function checkIfAnswerSelected() {
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Dacă nu este ultima întrebare, validăm butonul Next
+    if (intrebareCurentaIndex < intrebariGenerale.length - 1) {
+        if (raspunsuriUtilizator[intrebareCurentaIndex]) { // Verifică dacă există un răspuns pentru întrebarea curentă
+            nextBtn.disabled = false; // Activează butonul Next
+        } else {
+            nextBtn.disabled = true; // Dezactivează butonul Next
+        }
+        submitBtn.style.display = 'none'; // Ascunde butonul de submit dacă nu ești la ultima întrebare
+    } else { // Suntem la ultima întrebare
+        nextBtn.disabled = true; // Nu mai poți da next la ultima întrebare
+        if (raspunsuriUtilizator[intrebareCurentaIndex]) { // Verifică dacă ultima întrebare e răspunsă
+            submitBtn.style.display = 'block'; // Arată butonul de submit dacă ultima întrebare e răspunsă
+        } else {
+            submitBtn.style.display = 'none'; // Ascunde-l dacă nu e răspunsă
+        }
     }
 }
 
+
 function nextIntrebare() {
+    // NOU: Verifică dacă a fost selectat un răspuns înainte de a trece la următoarea întrebare
+    if (!raspunsuriUtilizator[intrebareCurentaIndex]) {
+        alert("Please select an answer to continue!"); // Mesaj de avertizare
+        return; // Oprește funcția dacă nu s-a selectat un răspuns
+    }
+
     if (intrebareCurentaIndex < intrebariGenerale.length - 1) {
         intrebareCurentaIndex++;
         afiseazaIntrebareCurenta();
@@ -459,14 +488,15 @@ async function trimiteRaspunsuri() {
     formData.append('team', numeEchipaSelectata); // Trimitem numele complet al echipei
     formData.append('subcategorie', subcategorieSelectata);
 
+    // Verificarea finală a tuturor răspunsurilor la trimitere
     let allQuestionsAnswered = true;
     for (let i = 0; i < intrebariGenerale.length; i++) {
         if (raspunsuriUtilizator[i]) {
-            formData.append(`raspuns${i}`, raspunsuriUtilizator[i]); // Păstrăm `raspuns0`, `raspuns1` etc.
+            formData.append(`raspuns${i}`, raspunsuriUtilizator[i]); 
         } else {
             allQuestionsAnswered = false;
-            alert(`Plese select an answer before sending!`);
-            intrebareCurentaIndex = i;
+            alert(`Please select an answer for Question ${i + 1} before sending!`); // Mesaj în engleză
+            intrebareCurentaIndex = i; // Navighează la întrebarea la care nu s-a răspuns
             afiseazaIntrebareCurenta();
             return; 
         }
@@ -485,7 +515,7 @@ async function trimiteRaspunsuri() {
         if (!response.ok) {
             const errorText = await response.text(); 
             console.error('Server response error:', response.status, response.statusText, errorText);
-            throw new Error(`HTTP response failed: ${response.status} ${response.statusText}. Detalii: ${errorText}`);
+            throw new Error(`HTTP response failed: ${response.status} ${response.statusText}. Details: ${errorText}`);
         }
 
         const data = await response.json();
@@ -514,19 +544,19 @@ function afiseazaSelectiaFinala() {
 
     const optiunePrincipalaSelectata = selectPrincipal.options[selectPrincipal.selectedIndex].textContent;
     const subcategorieSelectata = subcategorieSelect.value;
-    const valoareOptiunePrincipala = selectPrincipal.value; // Aceasta e valoarea 'teamX'
+    const valoareOptiunePrincipala = selectPrincipal.value; 
 
-    if (optiunePrincipalaSelectata !== 'Selectează' && subcategorieSelectata !== 'default') {
-        afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata} și ${subcategorieSelectata}`;
+    if (optiunePrincipalaSelectata !== 'Select team' && subcategorieSelectata !== 'default') { 
+        afisareFinala.textContent = `You have selected: ${optiunePrincipalaSelectata} and ${subcategorieSelectata}`; 
         genereazaSiAfiseazaPrimaIntrebare(valoareOptiunePrincipala, subcategorieSelectata);
-    } else if (optiunePrincipalaSelectata !== 'Selectează') {
-         afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata}`;
-         document.getElementById('intrebariContainer').innerHTML = '';
-         document.getElementById('navButtons').style.display = 'none';
-         document.getElementById('submitBtn').style.display = 'none';
-         intrebariGenerale = [];
-         intrebareCurentaIndex = 0;
-         raspunsuriUtilizator = {};
+    } else if (optiunePrincipalaSelectata !== 'Select team') { 
+        afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata}`; 
+        document.getElementById('intrebariContainer').innerHTML = '';
+        document.getElementById('navButtons').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'none';
+        intrebariGenerale = [];
+        intrebareCurentaIndex = 0;
+        raspunsuriUtilizator = {};
     } else {
         afisareFinala.textContent = '';
         document.getElementById('intrebariContainer').innerHTML = '';
