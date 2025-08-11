@@ -2,213 +2,213 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8" />
-<title>Selecție cu subcategorii și Chestionar Online</title>
+<title>Selecție cu subcategorii personalizate și Chestionar Online</title>
 <style>
-    /* Stiluri generale pentru body */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0; /* Elimină marginile implicite ale body-ului */
-        padding: 20px; /* Adaugă padding uniform în jurul conținutului */
-        background-color: #f4f4f4; /* Fundal ușor gri */
-        display: flex; /* Folosim flexbox pentru a centra conținutul */
-        flex-direction: column; /* Elemente aranjate pe coloană */
-        align-items: center; /* Centrează orizontal elementele copil */
-        min-height: 100vh; /* Asigură că body-ul ocupă toată înălțimea viewport-ului */
-        box-sizing: border-box; /* Include padding-ul în lățime și înălțime */
-    }
+  /* Stiluri generale pentru body */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Elimină marginile implicite ale body-ului */
+    padding: 20px; /* Adaugă padding uniform în jurul conținutului */
+    background-color: #f4f4f4; /* Fundal ușor gri */
+    display: flex; /* Folosim flexbox pentru a centra conținutul */
+    flex-direction: column; /* Elemente aranjate pe coloană */
+    align-items: center; /* Centrează orizontal elementele copil */
+    min-height: 100vh; /* Asigură că body-ul ocupă toată înălțimea viewport-ului */
+    box-sizing: border-box; /* Include padding-ul în lățime și înălțime */
+  }
 
-    /* Container principal pentru a limita lățimea conținutului și a-l centra */
-    .main-container {
-        width: 100%; /* Ocupă 100% din lățimea disponibilă a părinteleui (body) */
-        max-width: 800px; /* Limitează lățimea maximă la 800px, ideal pentru lizibilitate */
-        padding: 30px; /* Padding intern generos */
-        background-color: #ffffff; /* Fundal alb pentru container */
-        border-radius: 8px; /* Colțuri rotunjite pentru un aspect modern */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Umbră subtilă pentru a scoate în evidență containerul */
-        margin-top: 20px; /* Spațiu deasupra containerului */
-        margin-bottom: 20px; /* Spațiu sub container */
-    }
+  /* Container principal pentru a limita lățimea conținutului și a-l centra */
+  .main-container {
+    width: 100%; /* Ocupă 100% din lățimea disponibilă a părinteleui (body) */
+    max-width: 800px; /* Limitează lățimea maximă la 800px, ideal pentru lizibilitate */
+    padding: 30px; /* Padding intern generos */
+    background-color: #ffffff; /* Fundal alb pentru container */
+    border-radius: 8px; /* Colțuri rotunjite pentru un aspect modern */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Umbră subtilă pentru a scoate în evidență containerul */
+    margin-top: 20px; /* Spațiu deasupra containerului */
+    margin-bottom: 20px; /* Spațiu sub container */
+  }
 
-    /* Stil pentru titlul principal (nou adăugat în HTML) */
-    h1 {
-        text-align: center; /* Centrează textul titlului */
-        color: #333;
-        margin-bottom: 30px; /* Spațiu sub titlu */
-        font-size: 2em; /* Mărime mai mare pentru titlu */
-    }
+  /* Stil pentru titlul principal (nou adăugat în HTML) */
+  h1 {
+    text-align: center; /* Centrează textul titlului */
+    color: #333;
+    margin-bottom: 30px; /* Spațiu sub titlu */
+    font-size: 2em; /* Mărime mai mare pentru titlu */
+  }
 
-    /* Stiluri pentru etichetele formularului */
-    label {
-        display: block;
-        margin-bottom: 8px; /* Spațiu sub etichetă */
-        font-weight: bold;
-        color: #555; /* O nuanță mai închisă pentru etichete */
-        font-size: 1.1em;
-    }
+  /* Stiluri pentru etichetele formularului */
+  label {
+    display: block;
+    margin-bottom: 8px; /* Spațiu sub etichetă */
+    font-weight: bold;
+    color: #555; /* O nuanță mai închisă pentru etichete */
+    font-size: 1.1em;
+  }
 
-    /* Stiluri pentru elementele select și button */
-    select, button {
-        padding: 12px 15px; /* Padding mai generos */
-        margin-bottom: 20px; /* Spațiu sub element */
-        border: 1px solid #ccc;
-        border-radius: 6px; /* Colțuri ușor mai rotunjite */
-        font-size: 1em; /* Mărime consistentă a fontului */
-        cursor: pointer;
-        width: 100%; /* Ocupă toată lățimea containerului părinte */
-        box-sizing: border-box; /* Include padding-ul și bordura în lățime */
-        background-color: #fff; /* Fundal alb */
-        color: #333;
-        transition: all 0.3s ease; /* Animație subtilă la hover/focus */
-    }
+  /* Stiluri pentru elementele select și button */
+  select, button {
+    padding: 12px 15px; /* Padding mai generos */
+    margin-bottom: 20px; /* Spațiu sub element */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Colțuri ușor mai rotunjite */
+    font-size: 1em; /* Mărime consistentă a fontului */
+    cursor: pointer;
+    width: 100%; /* Ocupă toată lățimea containerului părinte */
+    box-sizing: border-box; /* Include padding-ul și bordura în lățime */
+    background-color: #fff; /* Fundal alb */
+    color: #333;
+    transition: all 0.3s ease; /* Animație subtilă la hover/focus */
+  }
 
-    /* Stiluri pentru focus (când un element este selectat/activ) */
-    select:focus, button:focus {
-        outline: none; /* Elimină conturul implicit al browserului */
-        border-color: #603393; /* Bordură accentuată la focus */
-        box-shadow: 0 0 0 3px rgba(96, 51, 147, 0.2); /* Umbră de focus subtilă */
-    }
+  /* Stiluri pentru focus (când un element este selectat/activ) */
+  select:focus, button:focus {
+    outline: none; /* Elimină conturul implicit al browserului */
+    border-color: #603393; /* Bordură accentuată la focus */
+    box-shadow: 0 0 0 3px rgba(96, 51, 147, 0.2); /* Umbră de focus subtilă */
+  }
 
-    /* Stiluri pentru butoane */
-    button {
-        background-color: #4CAF50; /* Culoare verde primară */
-        color: white;
-        font-weight: bold;
-        border: none;
-    }
+  /* Stiluri pentru butoane */
+  button {
+    background-color: #4CAF50; /* Culoare verde primară */
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
 
-    button:hover {
-        background-color: #45a049; /* Nuanță mai închisă la hover */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Umbră la hover */
-    }
+  button:hover {
+    background-color: #45a049; /* Nuanță mai închisă la hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Umbră la hover */
+  }
 
-    /* Stiluri pentru zona de afișare finală */
-    #afisareFinala {
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 25px; /* Spațiu sub afișare */
-        padding: 15px;
-        border: 1px solid #ddd;
-        background-color: #e9e9e9;
-        border-radius: 6px;
-        text-align: center; /* Centrează textul */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
+  /* Stiluri pentru zona de afișare finală */
+  #afisareFinala {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px; /* Spațiu sub afișare */
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #e9e9e9;
+    border-radius: 6px;
+    text-align: center; /* Centrează textul */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
 
-    /* Stiluri pentru containerul de întrebări */
-    .intrebari-container {
-        margin-top: 30px; /* Spațiu deasupra containerului de întrebări */
-        border-top: 2px solid #ccc; /* Linie de separare mai vizibilă */
-        padding-top: 30px;
-        width: 100%;
-    }
+  /* Stiluri pentru containerul de întrebări */
+  .intrebari-container {
+    margin-top: 30px; /* Spațiu deasupra containerului de întrebări */
+    border-top: 2px solid #ccc; /* Linie de separare mai vizibilă */
+    padding-top: 30px;
+    width: 100%;
+  }
 
-    /* Stiluri pentru fiecare întrebare individuală */
-    .intrebare {
-        margin-bottom: 25px; /* Spațiu sub fiecare întrebare */
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px; /* Colțuri rotunjite */
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Umbră mai pronunțată */
-        border: 1px solid #eee; /* Bordură foarte subtilă */
-    }
+  /* Stiluri pentru fiecare întrebare individuală */
+  .intrebare {
+    margin-bottom: 25px; /* Spațiu sub fiecare întrebare */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px; /* Colțuri rotunjite */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Umbră mai pronunțată */
+    border: 1px solid #eee; /* Bordură foarte subtilă */
+  }
 
-    .intrebare p {
-        font-weight: bold;
-        margin-bottom: 15px; /* Spațiu sub textul întrebării */
-        font-size: 1.2em; /* Textul întrebării mai mare */
-        color: #333;
-    }
+  .intrebare p {
+    font-weight: bold;
+    margin-bottom: 15px; /* Spațiu sub textul întrebării */
+    font-size: 1.2em; /* Textul întrebării mai mare */
+    color: #333;
+  }
 
-    /* Stiluri pentru lista de răspunsuri */
-    .raspunsuri {
-        list-style: none; /* Elimină bullet points */
-        padding: 0;
-        margin: 0;
-    }
+  /* Stiluri pentru lista de răspunsuri */
+  .raspunsuri {
+    list-style: none; /* Elimină bullet points */
+    padding: 0;
+    margin: 0;
+  }
 
-    .raspunsuri li {
-        margin-bottom: 12px; /* Spațiu între opțiunile de răspuns */
-        display: flex; /* Pentru alinierea input-ului radio cu label-ul */
-        align-items: center; /* Centrează vertical elementele */
-    }
+  .raspunsuri li {
+    margin-bottom: 12px; /* Spațiu între opțiunile de răspuns */
+    display: flex; /* Pentru alinierea input-ului radio cu label-ul */
+    align-items: center; /* Centrează vertical elementele */
+  }
 
-    /* Stiluri pentru radio button-uri (personalizate pentru un aspect mai modern) */
-    .raspunsuri input[type="radio"] {
-        -webkit-appearance: none; /* Ascunde stilurile implicite ale browserului */
-        -moz-appearance: none;
-        appearance: none;
-        width: 20px; /* Dimensiune fixă */
-        height: 20px;
-        border: 2px solid #603393; /* Bordură violet */
-        border-radius: 50%; /* Face-l rotund */
-        background-color: #fff;
-        cursor: pointer;
-        transition: all 0.2s ease; /* Animație la hover/checked */
-        flex-shrink: 0; /* Prevents shrinking in flex container */
-        margin-right: 10px; /* Spațiu între radio și text */
-    }
+  /* Stiluri pentru radio button-uri (personalizate pentru un aspect mai modern) */
+  .raspunsuri input[type="radio"] {
+    -webkit-appearance: none; /* Ascunde stilurile implicite ale browserului */
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px; /* Dimensiune fixă */
+    height: 20px;
+    border: 2px solid #603393; /* Bordură violet */
+    border-radius: 50%; /* Face-l rotund */
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease; /* Animație la hover/checked */
+    flex-shrink: 0; /* Prevents shrinking in flex container */
+    margin-right: 10px; /* Spațiu între radio și text */
+  }
 
-    .raspunsuri input[type="radio"]:checked {
-        background-color: #603393; /* Fundal violet când e selectat */
-        border-color: #603393;
-        box-shadow: inset 0 0 0 5px #F4E2D6; /* "Buliță" alb crem în centru */
-    }
+  .raspunsuri input[type="radio"]:checked {
+    background-color: #603393; /* Fundal violet când e selectat */
+    border-color: #603393;
+    box-shadow: inset 0 0 0 5px #F4E2D6; /* "Buliță" alb crem în centru */
+  }
 
-    .raspunsuri label {
-        margin-bottom: 0; /* Elimină margin-bottom de la label-ul general */
-        font-weight: normal; /* Asigură că textul nu este bold */
-        color: #0B0B0B; /* Text negru profund */
-        font-size: 1em;
-        cursor: pointer;
-    }
+  .raspunsuri label {
+    margin-bottom: 0; /* Elimină margin-bottom de la label-ul general */
+    font-weight: normal; /* Asigură că textul nu este bold */
+    color: #0B0B0B; /* Text negru profund */
+    font-size: 1em;
+    cursor: pointer;
+  }
 
-    /* Stiluri pentru butoanele de navigare (Anteriorul, Următorul, Trimite) */
-    .nav-buttons {
-        margin-top: 25px;
-        display: flex;
-        gap: 15px; /* Spațiu mai mare între butoane */
-        justify-content: flex-start; /* Aliniere la stânga */
-        width: 100%;
-    }
+  /* Stiluri pentru butoanele de navigare (Anteriorul, Următorul, Trimite) */
+  .nav-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; /* Spațiu mai mare între butoane */
+    justify-content: flex-start; /* Aliniere la stânga */
+    width: 100%;
+  }
 
-    .nav-buttons button {
-        width: auto; /* Lățime automată pentru butoanele individuale */
-        padding: 12px 25px; /* Padding generos */
-        font-size: 1.1em;
-        border-radius: 6px;
-    }
+  .nav-buttons button {
+    width: auto; /* Lățime automată pentru butoanele individuale */
+    padding: 12px 25px; /* Padding generos */
+    font-size: 1.1em;
+    border-radius: 6px;
+  }
 
-    #prevBtn, #nextBtn {
-        background-color: #CC83B8; /* Violet deschis pentru navigare */
-        color: #3B0A5C; /* Text violet închis */
-    }
+  #prevBtn, #nextBtn {
+    background-color: #CC83B8; /* Violet deschis pentru navigare */
+    color: #3B0A5C; /* Text violet închis */
+  }
 
-    #prevBtn:hover, #nextBtn:hover {
-        background-color: #603393; /* Violet mediu la hover */
-        color: white;
-    }
+  #prevBtn:hover, #nextBtn:hover {
+    background-color: #603393; /* Violet mediu la hover */
+    color: white;
+  }
 
-    #submitBtn {
-        background-color: #BA8C47; /* Galben mediu pentru butonul de trimitere */
-        color: #3B0A5C; /* Text violet închis */
-        margin-left: auto; /* Împinge butonul la dreapta */
-    }
+  #submitBtn {
+    background-color: #BA8C47; /* Galben mediu pentru butonul de trimitere */
+    color: #3B0A5C; /* Text violet închis */
+    margin-left: auto; /* Împinge butonul la dreapta */
+  }
 
-    #submitBtn:hover {
-        background-color: #DBBF76; /* Galben deschis la hover */
-    }
+  #submitBtn:hover {
+    background-color: #DBBF76; /* Galben deschis la hover */
+  }
 
-    #prevBtn:disabled, #nextBtn:disabled {
-        background-color: #cccccc; /* Gri pentru butoanele dezactivate */
-        color: #666666;
-        cursor: not-allowed;
-    }
+  #prevBtn:disabled, #nextBtn:disabled {
+    background-color: #cccccc; /* Gri pentru butoanele dezactivate */
+    color: #666666;
+    cursor: not-allowed;
+  }
 
-    /* Asigură că formularele ocupă toată lățimea containerului lor */
-    form {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+  /* Asigură că formularele ocupă toată lățimea containerului lor */
+  form {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
 </style>
 <script>
@@ -217,10 +217,32 @@ let intrebareCurentaIndex = 0;
 let raspunsuriUtilizator = {};
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-_Lz2PDvW99sG4gSQ2DGt3GH2ggdpbNGNV78N-mkLez6CEibp9_tnBPRjR6aqWV_V/exec'; // !!! Înlocuiește cu URL-ul aplicației tale web Apps Script !!!
 
+// NOU: Obiect care stochează subcategoriile pentru fiecare echipă
+// ACUM AI CONTROL TOTAL ASUPRA NUMELOR SUBCATEGORIILOR PENTRU FIECARE ECHIPĂ!
+const subcategoriiPerEchipa = {
+    'team1': ['Nightfall', 'kiyotaka', 'TORONTOTOKYO', 'Mira', 'panto'], // Aurora Gaming
+    'team2': ['Pure', 'gpk~', 'MieRo', 'Save-', 'Kataomi`'], // BB Team
+    'team3': ['JACKBOYS', 'Armel', 'Jabz', 'TIMS', 'Jaunuel'], // BOOM Esports
+    'team4': ['Carry Gladiators', 'Midlane Gladiators', 'Offlane Gladiators', 'Soft Support Gladiators', 'Hard Support Gladiators'], // Gaimin Gladiators
+    'team5': ['Carry HEROIC', 'Midlane HEROIC', 'Offlane HEROIC', 'Soft Support HEROIC', 'Hard Support HEROIC'], // HEROIC
+    'team6': ['Carry NaVi', 'Midlane NaVi', 'Offlane NaVi', 'Soft Support NaVi', 'Hard Support NaVi'], // Natus Vincere
+    'team7': ['Carry Nigma', 'Midlane Nigma', 'Offlane Nigma', 'Soft Support Nigma', 'Hard Support Nigma'], // Nigma Galaxy
+    'team8': ['Carry PVISION', 'Midlane PVISION', 'Offlane PVISION', 'Soft Support PVISION', 'Hard Support PVISION'], // PVISION
+    'team9': ['Carry Falcons', 'Midlane Falcons', 'Offlane Falcons', 'Soft Support Falcons', 'Hard Support Falcons'], // Team Falcons
+    'team10': ['Carry Liquid', 'Midlane Liquid', 'Offlane Liquid', 'Soft Support Liquid', 'Hard Support Liquid'], // Team Liquid
+    'team11': ['Carry Nemesis', 'Midlane Nemesis', 'Offlane Nemesis', 'Soft Support Nemesis', 'Hard Support Nemesis'], // Team Nemesis
+    'team12': ['Carry Spirit', 'Midlane Spirit', 'Offlane Spirit', 'Soft Support Spirit', 'Hard Support Spirit'], // Team Spirit
+    'team13': ['Carry Tidebound', 'Midlane Tidebound', 'Offlane Tidebound', 'Soft Support Tidebound', 'Hard Support Tidebound'], // Team Tidebound
+    'team14': ['Carry Tundra', 'Midlane Tundra', 'Offlane Tundra', 'Soft Support Tundra', 'Hard Support Tundra'], // Tundra Esports
+    'team15': ['Carry Wildcard', 'Midlane Wildcard', 'Offlane Wildcard', 'Soft Support Wildcard', 'Hard Support Wildcard'], // Wildcard
+    'team16': ['Carry Xtreme', 'Midlane Xtreme', 'Offlane Xtreme', 'Soft Support Xtreme', 'Hard Support Xtreme']  // Xtreme Gaming
+};
+
+
 function afiseazaSubcategorii() {
     const selectPrincipal = document.getElementById('optiuniPrincipal');
     const subcategorieSelect = document.getElementById('subcategorieSelect');
-    const subcategorieDropdownContainer = document.getElementById('subcategorieDropdownContainer');
+    const subcategorieDropdownContainer = document.getElementById('subcategorieDropdownContainer'); 
     const optiuneSelectata = selectPrincipal.value;
 
     subcategorieDropdownContainer.style.display = 'none';
@@ -228,26 +250,24 @@ function afiseazaSubcategorii() {
     document.getElementById('afisareFinala').textContent = '';
     document.getElementById('intrebariContainer').innerHTML = '';
     document.getElementById('navButtons').style.display = 'none';
-    document.getElementById('submitBtn').style.display = 'none'; // Ascunde butonul de trimitere
+    document.getElementById('submitBtn').style.display = 'none'; 
 
     intrebariGenerale = [];
     intrebareCurentaIndex = 0;
     raspunsuriUtilizator = {};
 
     if (optiuneSelectata !== 'default') {
-        const subcategorii = {};
-        for (let i = 1; i <= 16; i++) {
-            const subcategory = [`Sub ${i}.1`, `Sub ${i}.2`, `Sub ${i}.3`, `Sub ${i}.4`, `Sub ${i}.5`];
-            subcategorii[`team${i}`] = subcategory;
-        }
+        const subcategoriiPentruEchipa = subcategoriiPerEchipa[optiuneSelectata];
 
-        subcategorii[optiuneSelectata].forEach(sub => {
-            const option = document.createElement('option');
-            option.value = sub;
-            option.textContent = sub;
-            subcategorieSelect.appendChild(option);
-        });
-        subcategorieDropdownContainer.style.display = 'block';
+        if (subcategoriiPentruEchipa) { 
+            subcategoriiPentruEchipa.forEach(sub => {
+                const option = document.createElement('option');
+                option.value = sub; 
+                option.textContent = sub;
+                subcategorieSelect.appendChild(option);
+            });
+            subcategorieDropdownContainer.style.display = 'block';
+        }
     }
 }
 
@@ -260,19 +280,18 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
         return;
     }
 
+    const selectPrincipal = document.getElementById('optiuniPrincipal');
+    const numeEchipaSelectata = selectPrincipal.options[selectPrincipal.selectedIndex].textContent;
+
     const intrebariExemplu = [
         {
-            intrebare: `Întrebarea 1: Care este principalul obiectiv pentru ${optiunePrincipala} în ${subcategorie}?`,
+            intrebare: `Întrebarea 1: Care este cel mai bun "Carry" al echipei ${numeEchipaSelectata} în contextul ${subcategorie}?`, 
             raspunsuri: [
-                "Creșterea eficienței operaționale", "Dezvoltarea de noi produse", "Expansiunea pe piață",
-                "Optimizarea costurilor", "Îmbunătățirea satisfacției clienților", "Formarea echipei",
-                "Inovația tehnologică", "Reducerea riscurilor", "Conformitatea legală",
-                "Sustenabilitatea mediului", "Parteneriate strategice", "Analiza datelor",
-                "Marketing digital"
+                "AM", "TB", "SF", "PA", "Juggernaut", "Sven", "Luna", "Drow Ranger", "Terrorblade", "Phantom Lancer", "Medusa", "Faceless Void", "Anti-Mage"
             ]
         },
         {
-            intrebare: `Întrebarea 2: Ce provocări majore întâmpină ${optiunePrincipala} în contextul ${subcategorie}?`,
+            intrebare: `Întrebarea 2: Ce provocări majore întâmpină ${numeEchipaSelectata} în contextul ${subcategorie}?`, 
             raspunsuri: [
                 "Concurența acerbă", "Reglementări în schimbare", "Lipsa resurselor",
                 "Tehnologie învechită", "Schimbări de piață", "Fluctuații economice",
@@ -282,7 +301,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `Întrebarea 3: Cum contribuie ${subcategorie} la succesul general al ${optiunePrincipala}?`,
+            intrebare: `Întrebarea 3: Cum contribuie ${numeEchipaSelectata} la succesul general al ${subcategorie}?`, 
             raspunsuri: [
                 "Prin inovație constantă", "Prin soluții personalizate", "Prin reducerea erorilor",
                 "Prin optimizarea proceselor", "Prin experiența utilizatorului", "Prin suport tehnic",
@@ -292,7 +311,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `Întrebarea 4: Ce instrumente sau metode sunt esențiale pentru ${optiunePrincipala} în ${subcategorie}?`,
+            intrebare: `Întrebarea 4: Ce instrumente sau metode sunt esențiale pentru ${numeEchipaSelectata} în ${subcategorie}?`, 
             raspunsuri: [
                 "Software CRM", "Platforme de analiză", "Metodologii Agile",
                 "Instrumente de colaborare", "Sisteme ERP", "Inteligență Artificială",
@@ -302,7 +321,7 @@ function genereazaSiAfiseazaPrimaIntrebare(optiunePrincipala, subcategorie) {
             ]
         },
         {
-            intrebare: `Întrebarea 5: Ce oportunități de creștere există pentru ${optiunePrincipala} prin ${subcategorie}?`,
+            intrebare: `Întrebarea 5: Ce oportunități de creștere există pentru ${numeEchipaSelectata} prin ${subcategorie}?`, 
             raspunsuri: [
                 "Extinderea portofoliului de servicii", "Pătrunderea pe noi segmente de piață", "Parteneriate strategice",
                 "Achiziții", "Licențiere", "Franchizare",
@@ -369,7 +388,6 @@ function afiseazaIntrebareCurenta() {
     document.getElementById('prevBtn').disabled = intrebareCurentaIndex === 0;
     document.getElementById('nextBtn').disabled = intrebareCurentaIndex === intrebariGenerale.length - 1;
 
-    // Afișează butonul de trimitere doar la ultima întrebare
     if (intrebareCurentaIndex === intrebariGenerale.length - 1) {
         document.getElementById('submitBtn').style.display = 'block';
     } else {
@@ -395,23 +413,20 @@ async function trimiteRaspunsuri() {
     const selectPrincipal = document.getElementById('optiuniPrincipal');
     const subcategorieSelect = document.getElementById('subcategorieSelect');
 
-    const valoareOptiunePrincipala = selectPrincipal.value; // ex: team1
-    const subcategorieSelectata = subcategorieSelect.value; // ex: Sub 1.1
+    const numeEchipaSelectata = selectPrincipal.options[selectPrincipal.selectedIndex].textContent; // Obține numele vizibil al echipei
+    const subcategorieSelectata = subcategorieSelect.value; 
 
-    // Colectează toate răspunsurile
     const formData = new FormData();
-    formData.append('team', valoareOptiunePrincipala);
+    formData.append('team', numeEchipaSelectata); // Trimitem numele complet al echipei
     formData.append('subcategorie', subcategorieSelectata);
 
     let allQuestionsAnswered = true;
     for (let i = 0; i < intrebariGenerale.length; i++) {
         if (raspunsuriUtilizator[i]) {
-            formData.append(`raspuns${i}`, raspunsuriUtilizator[i]);
+            formData.append(`raspuns${i}`, raspunsuriUtilizator[i]); // Păstrăm `raspuns0`, `raspuns1` etc.
         } else {
             allQuestionsAnswered = false;
-            // Oprește-te și informează utilizatorul că trebuie să răspundă la toate întrebările
             alert(`Te rog răspunde la Întrebarea ${i + 1} înainte de a trimite!`);
-            // Opțional: navighează la întrebarea la care nu s-a răspuns
             intrebareCurentaIndex = i;
             afiseazaIntrebareCurenta();
             return; 
@@ -419,22 +434,25 @@ async function trimiteRaspunsuri() {
     }
 
     if (!allQuestionsAnswered) {
-        return; // Nu trimite dacă nu sunt toate întrebările răspuns
+        return; 
     }
 
-    // Aici se face cererea POST către Google Apps Script
     try {
         const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
             method: 'POST',
-            body: formData, // FormData este ideală pentru a trimite date către Apps Script doPost
-            // headers: { 'Content-Type': 'application/json' }, // Nu e necesar pentru FormData
+            body: formData,
         });
+
+        if (!response.ok) {
+            const errorText = await response.text(); 
+            console.error('Eroare la răspunsul serverului:', response.status, response.statusText, errorText);
+            throw new Error(`Răspuns HTTP eșuat: ${response.status} ${response.statusText}. Detalii: ${errorText}`);
+        }
 
         const data = await response.json();
 
         if (data.status === 'SUCCESS') {
             alert('Răspunsurile tale au fost trimise cu succes!');
-            // Poți reseta formularul aici sau redirecționa utilizatorul
             resetForm();
         } else {
             alert(`A apărut o eroare: ${data.message}`);
@@ -447,9 +465,8 @@ async function trimiteRaspunsuri() {
 
 function resetForm() {
     document.getElementById('optiuniPrincipal').value = 'default';
-    afiseazaSubcategorii(); // Va reseta și subcategoriile și întrebările
+    afiseazaSubcategorii(); 
 }
-
 
 function afiseazaSelectiaFinala() {
     const selectPrincipal = document.getElementById('optiuniPrincipal');
@@ -458,7 +475,7 @@ function afiseazaSelectiaFinala() {
 
     const optiunePrincipalaSelectata = selectPrincipal.options[selectPrincipal.selectedIndex].textContent;
     const subcategorieSelectata = subcategorieSelect.value;
-    const valoareOptiunePrincipala = selectPrincipal.value;
+    const valoareOptiunePrincipala = selectPrincipal.value; // Aceasta e valoarea 'teamX'
 
     if (optiunePrincipalaSelectata !== 'Selectează' && subcategorieSelectata !== 'default') {
         afisareFinala.textContent = `Ai selectat: ${optiunePrincipalaSelectata} și ${subcategorieSelectata}`;
@@ -484,51 +501,45 @@ function afiseazaSelectiaFinala() {
 </script>
 </head>
 <body>
-    <div class="main-container">
-        <h1>Chestionar Online</h1> <form>
-            <label for="optiuniPrincipal">Alege o opțiune:</label>
-            <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
-                <option value="default">Selectează</option>
-                <option value="team1">Team 1</option>
-                <option value="team2">Team 2</option>
-                <option value="team3">Team 3</option>
-                <option value="team4">Team 4</option>
-                <option value="team5">Team 5</option>
-                <option value="team6">Team 6</option>
-                <option value="team7">Team 7</option>
-                <option value="team8">Team 8</option>
-                <option value="team9">Team 9</option>
-                <option value="team10">Team 10</option>
-                <option value="team11">Team 11</option>
-                <option value="team12">Team 12</option>
-                <option value="team13">Team 13</option>
-                <option value="team14">Team 14</option>
-                <option value="team15">Team 15</option>
-                <option value="team16">Team 16</option>
-            </select>
-        </form>
+<div class="main-container"> <h1>Chestionar Online</h1> <form>
+        <label for="optiuniPrincipal">Alege o opțiune:</label>
+        <select id="optiuniPrincipal" onchange="afiseazaSubcategorii(); afiseazaSelectiaFinala();">
+            <option value="default">Selectează</option>
+            <option value="team1">Aurora Gaming</option>
+            <option value="team2">BB Team</option>
+            <option value="team3">BOOM Esports</option>
+            <option value="team4">Gaimin Gladiators</option>
+            <option value="team5">HEROIC</option>
+            <option value="team6">Natus Vincere</option>
+            <option value="team7">Nigma Galaxy</option>
+            <option value="team8">PVISION</option>
+            <option value="team9">Team Falcons</option>
+            <option value="team10">Team Liquid</option>
+            <option value="team11">Team Nemesis</option>
+            <option value="team12">Team Spirit</option>
+            <option value="team13">Team Tidebound</option>
+            <option value="team14">Tundra Esports</option>
+            <option value="team15">Wildcard</option>
+            <option value="team16">Xtreme Gaming</option>
+        </select>
+    </form>
 
-        <form id="subcategorieDropdownContainer" style="display: none;">
-            <label for="subcategorieSelect">Selectează o subcategorie:</label>
-            <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
-                <option value="default">Selectează o subcategorie</option>
-            </select>
-        </form>
+    <form id="subcategorieDropdownContainer" style="display: none;">
+        <label for="subcategorieSelect">Selectează o subcategorie:</label>
+        <select id="subcategorieSelect" onchange="afiseazaSelectiaFinala()">
+            <option value="default">Selectează o subcategorie</option>
+        </select>
+    </form>
 
-        <div id="afisareFinala"></div>
+    <div id="afisareFinala"></div>
 
-        <div id="intrebariContainer" class="intrebari-container">
-        </div>
-
-        <div id="navButtons" class="nav-buttons" style="display: none;">
-            <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
-            <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
-            <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
-        </div>
+    <div id="intrebariContainer" class="intrebari-container">
     </div>
-</body>
+
+    <div id="navButtons" class="nav-buttons" style="display: none;">
+        <button id="prevBtn" onclick="prevIntrebare()">Anteriorul</button>
+        <button id="nextBtn" onclick="nextIntrebare()">Următorul</button>
+        <button id="submitBtn" onclick="trimiteRaspunsuri()" style="display: none;">Trimite Răspunsuri</button>
+    </div>
+</div> </body>
 </html>
-
-
-
-
