@@ -209,7 +209,6 @@
     width: 100%;
     margin-bottom: 10px;
   }
-   overscroll-behavior: none
 </style>
 <script>
 let intrebariGenerale = [];
@@ -568,6 +567,12 @@ function afiseazaSelectiaFinala() {
     }
 }
 </script>
+   <script>
+        // Funcția de avertisment
+        window.onbeforeunload = function() {
+            return "Dacă reîmprospătezi pagina, toate opțiunile vor fi resetate.";
+        };
+    </script>
 </head>
 <body>
 <div class="main-container"> <h1> TI LEGACY: VOTE FOR THE BEST  </h1> <form>
@@ -612,4 +617,5 @@ function afiseazaSelectiaFinala() {
     </div>
 </div> </body>
 </html>
+
 
